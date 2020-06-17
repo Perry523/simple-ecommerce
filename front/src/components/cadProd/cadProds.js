@@ -35,7 +35,7 @@ justify-content: center;
         border-radius: 10px;
         cursor: pointer;
     }
-    #upload{
+    .upload{
         display: none;
     }
         input{

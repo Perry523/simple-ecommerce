@@ -5,18 +5,19 @@ const Schema = use('Schema')
 
 class CriarProdutosSchema extends Schema {
   up () {
-    this.create('produtoom s', (table) => {
-      table.string('nome', 80).notNullable().unique()
-      table.string('marca')
-      table.integer('desconto')
-      table.integer('preco').notNullable()
-      table.string('info')
+    this.create('products', (table) => {
+      table.string('name', 80).notNullable().unique()
+      table.string('brand').notNullable()
+      table.string('type').notNullable()
+      table.integer('discount').notNullable()
+      table.integer('price').notNullable()
+      table.string('info').notNullable()
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('produtoom s')
+    this.drop('produtos')
   }
 }
 

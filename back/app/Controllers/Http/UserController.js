@@ -5,12 +5,12 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 /**
- * Resourceful controller for interacting with produtos
+ * Resourceful controller for interacting with users
  */
-class ProdutoController {
+class UserController {
   /**
-   * Show a list of all produtos.
-   * GET produtos
+   * Show a list of all users.
+   * GET users
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -18,12 +18,11 @@ class ProdutoController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    
   }
 
   /**
-   * Render a form to be used for creating a new produto.
-   * GET produtos/create
+   * Render a form to be used for creating a new user.
+   * GET users/create
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -34,20 +33,21 @@ class ProdutoController {
   }
 
   /**
-   * Create/save a new produto.
-   * POST produtos
+   * Create/save a new user.
+   * POST users
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
-    
+    const data = request.all()
+    return data;
   }
 
   /**
-   * Display a single produto.
-   * GET produtos/:id
+   * Display a single user.
+   * GET users/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -58,8 +58,8 @@ class ProdutoController {
   }
 
   /**
-   * Render a form to update an existing produto.
-   * GET produtos/:id/edit
+   * Render a form to update an existing user.
+   * GET users/:id/edit
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -70,8 +70,8 @@ class ProdutoController {
   }
 
   /**
-   * Update produto details.
-   * PUT or PATCH produtos/:id
+   * Update user details.
+   * PUT or PATCH users/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -81,8 +81,8 @@ class ProdutoController {
   }
 
   /**
-   * Delete a produto with id.
-   * DELETE produtos/:id
+   * Delete a user with id.
+   * DELETE users/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -92,4 +92,4 @@ class ProdutoController {
   }
 }
 
-module.exports = ProdutoController
+module.exports = UserController

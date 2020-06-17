@@ -44,7 +44,7 @@ export default class cadastrarProd extends React.Component {
             </Container>
             </Row>
             <Box >
-            <label style={{'padding-top': '30px','margin-top':'30px','border-top':'1px solid gray'}}><h1>Informações</h1></label>
+            <label style={{'paddingTop': '30px','marginTop':'30px','borderTop':'1px solid gray'}}><h1>Informações</h1></label>
             <textarea></textarea>
             </Box>
             <Col>
@@ -53,8 +53,8 @@ export default class cadastrarProd extends React.Component {
             </h1>
             {this.state.cores.map((cor,i) => 
                 <Row2 key={i}>
-                    <label for="upload" ><img height="60px" width="60px" src={cor.img === true ? cor.img : 'https://www.futebol7brasil.com.br/img/sem-foto.jpg' } alt={`variante${cor.cor}`}></img></label>
-                    <input type="file" id="upload" className="upload"></input>
+                    <label htmlFor={`upload${i}`} ><img height="60px" width="60px" src={cor.img !== null ? cor.img : 'https://www.futebol7brasil.com.br/img/sem-foto.jpg' } alt={`variante${cor.cor}`}></img></label>
+                    <input onChange={(e) => this.imgVariant(e,i)} type="file" id={`upload${i}`} className="upload"></input>
                     <input onChange={(e) => this.atualizaCor(e,i)} value={cor.cor}/>
                     <input onChange={(e) => this.atualizaEstoque(e,i)} value={cor.estoque}/>
                 </Row2>
@@ -68,18 +68,37 @@ export default class cadastrarProd extends React.Component {
     state = {
         imgs: [],
         imgsSrc: [],
-        cores: [{img: '', cor: 'teste',estoque: 50}],
-        nome: '',
-        marca: '',
-        tipo:'',
+        cores: [{imgFile: null,img: null, cor: 'Azul',estoque: 50}],
+        nome: null,
+        marca: null,
+        tipo:null,
         desconto: 0,
         preco: 0,
     }
     gerarCor = e =>{
         let novasCores = this.state.cores
-        novasCores.push({cor:'',estoque:0})
+        novasCores.push({imgFile:null,img:null,cor:'Azul',estoque:0})
         this.setState({cores :novasCores})
     }
+
+    imgVariant = (e,i) =>{
+        console.log(i)
+        let variants = this.state.cores
+        let file = e.target.files[0]    
+        const reader = new FileReader();
+        reader.onload = () => {
+            let src = reader.result;
+            variants[i].img = src
+            variants[i].imgFile = file
+            this.setState({
+                cores: variants
+            })
+            console.log(this.state.cores)
+        }
+        reader.readAsDataURL(e.target.files[0]);
+
+    }
+
     uploadIMG = e =>{
         let images = this.state.imgs
         let srcs = this.state.imgsSrc
@@ -104,6 +123,11 @@ export default class cadastrarProd extends React.Component {
     alteraMarca = (e) =>{
         this.setState({
             marca: e.target.value 
+        })
+    }
+    alteraTipo = (e) =>{
+        this.setState({
+            tipo: e.target.value 
         })
     }
     alteraNome = (e) =>{
@@ -134,21 +158,26 @@ export default class cadastrarProd extends React.Component {
     }
     submit = e=>{
         e.preventDefault()
-        console.log(this.state)
         const formData = new FormData()
-        const {imgs, nome,marca,preco,desconto,cores} = this.state
-        formData.append('nome',nome)
-        formData.append('marca',marca)
-        formData.append('preco',preco)
-        formData.append('desconto',desconto)
-        imgs.map(img => formData.append('imgs[]',img))
-        formData.append('cores',JSON.stringify(cores))
-        console.log(formData)
-        /*Axios.post('/api/produtos',this.state, {
+        const {imgs,marca,nome,preco,tipo,desconto,cores} = this.state
+        formData.append('name',nome)
+        formData.append('brand',marca)
+        formData.append('price',preco)
+        formData.append('type',tipo)
+        formData.append('discount',desconto)
+        imgs.map(img => {
+            formData.append('imgs[]',img)
+        })
+        cores.map((cor,i) => {
+            formData.append('variantImgs['+i+']',cor.imgFile)
+            formData.append('variants[]',JSON.stringify({cor:cor.cor, estoque: cor.estoque}))
+
+        })
+        Axios.post('http://localhost:3333/produtos',formData, {
    headers: {
-    "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+    "Content-Type": `multipart/form-data;`,
    }
-  })*/
+  })
     }
 
 }
