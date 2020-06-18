@@ -6,7 +6,7 @@ const Schema = use('Schema')
 class CreateImagesSchema extends Schema {
   up () {
     this.create('images', (table) => {
-      table.string('product_name').references('nome').inTable('produtos')
+      table.string('product_name').references('name').inTable('products')
       table.string('path')
       table.increments()
       table.timestamps()
@@ -14,7 +14,7 @@ class CreateImagesSchema extends Schema {
   }
 
   down () {
-    this.drop('create_images')
+    this.drop('images')
   }
 }
 

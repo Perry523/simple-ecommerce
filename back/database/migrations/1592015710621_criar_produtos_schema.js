@@ -17,7 +17,7 @@ class CriarProdutosSchema extends Schema {
   }
 
   down () {
-    this.drop('produtos')
+    this.drop('products')
   }
 }
 

@@ -15,7 +15,7 @@ class CreateVariantsSchema extends Schema {
   }
 
   down () {
-    this.drop('create_variants')
+    this.drop('variants')
   }
 }
 
