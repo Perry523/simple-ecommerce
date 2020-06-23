@@ -45,7 +45,7 @@ export default class cadastrarProd extends React.Component {
             </Row>
             <Box >
             <label style={{'paddingTop': '30px','marginTop':'30px','borderTop':'1px solid gray'}}><h1>Informações</h1></label>
-            <textarea></textarea>
+            <textarea onChange={this.alteraInfo} defaultValue={this.state.info}></textarea>
             </Box>
             <Col>
             <h1>Cores
@@ -74,6 +74,12 @@ export default class cadastrarProd extends React.Component {
         tipo:null,
         desconto: 0,
         preco: 0,
+        info: null,
+    }
+    alteraInfo = (e) =>{
+        this.setState({
+            info: e.target.value 
+        })
     }
     gerarCor = e =>{
         let novasCores = this.state.cores
@@ -159,12 +165,13 @@ export default class cadastrarProd extends React.Component {
     submit = e=>{
         e.preventDefault()
         const formData = new FormData()
-        const {imgs,marca,nome,preco,tipo,desconto,cores} = this.state
+        const {imgs,marca,nome,preco,tipo,info,desconto,cores} = this.state
         formData.append('name',nome)
         formData.append('brand',marca)
         formData.append('price',preco)
         formData.append('type',tipo)
         formData.append('discount',desconto)
+        formData.append('info',info)
         imgs.map(img => {
             formData.append('imgs[]',img)
         })

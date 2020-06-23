@@ -6,10 +6,10 @@ const Schema = use('Schema')
 class CreateVariantsSchema extends Schema {
   up () {
     this.create('variants', (table) => {
+      table.string('path')
       table.string('product_name').references('name').inTable('products')
       table.string('variant').notNullable()
       table.integer('stock')
-      table.increments()
       table.timestamps()
     })
   }

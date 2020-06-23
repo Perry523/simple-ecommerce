@@ -17,4 +17,7 @@
 const Route = use('Route')
 
 Route.post('/api/users','UserController.store')
-Route.post('/produtos','ProductController.store')
+Route.resource('/produtos','ProductController')
+Route.get('images/:path', 'ImageController.show')
+Route.get('variantImgs/:path', 'VariantController.show')
+
