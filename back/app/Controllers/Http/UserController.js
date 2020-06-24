@@ -3,7 +3,7 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-
+const User = use('App/Models/User')
 /**
  * Resourceful controller for interacting with users
  */
@@ -17,7 +17,7 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index ({ request, response, view, auth }) {
   }
 
   /**
@@ -40,9 +40,16 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
+  static get traits () {
+    return [
+      '@provider:Adonis/Acl/HasRole',
+      '@provider:Adonis/Acl/HasPermission'
+    ]
+  }
   async store ({ request, response }) {
-    const data = request.all()
-    return data;
+    const {username, password, email} = request.all()
+    const user = User.create({username,password,email})      
+    return user
   }
 
   /**
@@ -54,7 +61,10 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show ({ auth, params, request, response, view }) {
+    return auth.getUser()
+
+
   }
 
   /**

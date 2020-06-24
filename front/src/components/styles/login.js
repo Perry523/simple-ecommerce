@@ -21,18 +21,25 @@ export const Case = styled.div`
 
     form{
         margin-top: 10px;
-        max-width: 500px;
+        width: 100%;
+        padding: 0px 10px;
+        max-width: 470px;
         min-width: 250px;
         display: flex;
         flex-direction: column;
         align-self: center;
         margin-bottom:25px;
+
     div{
         align-self: center;
         margin: 5px;
     }
+    h3{
+        text-align: center;
+        color: red;
+        margin-bottom: 10px;
+    }
     p{
-        color: white;
         font-size: 17px;
         margin-bottom: 15px;
 

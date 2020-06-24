@@ -7,6 +7,7 @@ import cadastrarProd from './components/cadProd/cadastrarProd'
 import login from './components/login'
 import cadastro from './components/cadastro'
 import index from './components/index'
+import home from './components/home'
 import produto from './components/ExibirProduto'
 
 export default function Router() {
@@ -19,7 +20,8 @@ export default function Router() {
             <Route path="/cadastrar" component= {cadastrarProd} />
             <Route path="/cadastro" component= {cadastro} />
             <Route path="/login" component= {login} />
-            <Route path="/:produto" component= {produto} />
+            <Route path="/home" component={home} />
+            <Route path="/:produto" component={produto} />
         </Switch>
         </BrowserRouter>
     )
