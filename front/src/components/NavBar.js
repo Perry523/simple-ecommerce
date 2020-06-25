@@ -1,9 +1,11 @@
 import React from 'react'
-import {NavBar, Col,Row2, Links} from './styles/navBar'
+import {NavBar, Col,Row2,Row, Links,Badge} from './styles/navBar'
 import {Link} from 'react-router-dom'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {BsPersonFill} from 'react-icons/bs'
-export default function Nav() {
+import { connect } from 'react-redux'
+function Nav({cart}) {
+    console.log(cart)
     return (
         <>
         <NavBar>
@@ -12,7 +14,13 @@ export default function Nav() {
                 <input placeholder="Digite o que procura"/>
                 <Col style={{'flexGrow':'1','margin':'0px'}}>
                 
-                <Link to="/carrinho"><p>Carrinho</p><AiOutlineShoppingCart style={{'flex':1,'paddingRight':'5px'}}/></Link>
+                 <Link to="/carrinho">
+                     <Row>
+                        <p>Carrinho</p>
+                        <AiOutlineShoppingCart style={{'flex':1,'paddingRight':'5px'}}/>
+                        <Badge>{cart.length}</Badge>                 
+                     </Row>
+                 </Link>
                 <Link to="/home"><p>Meu Perfil</p><BsPersonFill style={{'flex':1,'paddingRight':'5px'}}></BsPersonFill ></Link>
                 </Col>
             </Row2>
@@ -26,3 +34,6 @@ export default function Nav() {
         </>
     )
 }
+export default connect(state => ({
+    cart: state.cart
+}))(Nav)

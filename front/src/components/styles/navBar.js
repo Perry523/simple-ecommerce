@@ -62,9 +62,30 @@ export const Row2 = styled.div`
     border-bottom: solid #eee 1px;
     justify-content: space-between;
     
-
 `
-
+export const Row = styled.div`
+    display: flex;
+    flex: 1;
+    position: relative;
+    p{
+        flex: 1;
+    }
+`
+export const Badge = styled.span`
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: -15px;
+    right: -5px;
+    /*top: -9px;
+    right: 7px;*/
+    background-color: #d31b1b;
+    border-radius: 50%;
+    font-size: 10px;
+    width: 12px;
+    height: 13px;
+    text-align: center;
+`
 export const Links = styled.div`
 display: flex;
 background-color: #B5F0F5;
@@ -81,6 +102,7 @@ background-color: #B5F0F5;
         justify-content: center;
         text-decoration: none;
         align-items: center;
+        position: relative;
         p{
             color: black;
             font-family:Georgia, 'Times New Roman', Times, serif

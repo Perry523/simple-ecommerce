@@ -5,6 +5,7 @@ export const Case = styled.div`
     justify-content: center;
     height: 100%;
 `
+
 export const Profile = styled.div`
 background-color: white;
     width: 50%;

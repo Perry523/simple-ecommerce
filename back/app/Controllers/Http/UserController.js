@@ -48,10 +48,9 @@ class UserController {
   }
   async store ({ request, response }) {
     const {username, password, email} = request.all()
-    const user = User.create({username,password,email})      
+    const user = User.create({username,password,email,isAdmin:false})      
     return user
   }
-
   /**
    * Display a single user.
    * GET users/:id
@@ -63,10 +62,10 @@ class UserController {
    */
   async show ({ auth, params, request, response, view }) {
     return auth.getUser()
-
-
   }
-
+  async isAdmin({request, auth}){
+    return auth.user.isAdmin
+  }
   /**
    * Render a form to update an existing user.
    * GET users/:id/edit
