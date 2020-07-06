@@ -1,10 +1,13 @@
 import React from 'react'
 import Axios from 'axios'
 import {Profile, Case} from './styles/home'
+import {Page} from './styles/Cart'
+import NavBar from './NavBar'
 export default class home extends React.Component {
     render(){
         return (
-            <>
+            <Page>
+                <NavBar/>
                 {this.state.dados === null ? 'teste' : 
                 <Case>
                     <Profile>
@@ -15,7 +18,7 @@ export default class home extends React.Component {
                     </Profile>
                 </Case>
                 }
-            </>
+            </Page>
         )
     }
     state = {

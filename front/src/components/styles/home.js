@@ -8,21 +8,18 @@ export const Case = styled.div`
 
 export const Profile = styled.div`
 background-color: white;
-    width: 50%;
-    border: 1px solid #eee;
-    box-shadow: 0px 0px 2px 0px;
+    width: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
         h1{
-            padding: 30px 0px;
+            padding: 10px 0px;
         }
     div{
         display: flex;
         padding: 30px;
         width: 100%;
-        border-top: 1px solid #eee;
         border-bottom: 1px solid #eee;
         span{
             justify-self: start;

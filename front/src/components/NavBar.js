@@ -10,7 +10,7 @@ function Nav({cart}) {
         <>
         <NavBar>
             <Row2>
-                <Link style={{'justifyContent':'center','flex':1}}><img src={window.location.origin + '/imgs/logo2.png'}></img></Link>
+                <Link to="/" style={{'justifyContent':'center','flex':1}}><img src={window.location.origin + '/imgs/logo2.png'}></img></Link>
                 <input placeholder="Digite o que procura"/>
                 <Col style={{'flexGrow':'1','margin':'0px'}}>
                 
@@ -24,12 +24,12 @@ function Nav({cart}) {
                 <Link to="/home"><p>Meu Perfil</p><BsPersonFill style={{'flex':1,'paddingRight':'5px'}}></BsPersonFill ></Link>
                 </Col>
             </Row2>
-            <Links style={{'height': '50px','justifyItems':'center'}}>
+            {/*<Links style={{'height': '50px','justifyItems':'center'}}>
                 <Link> <p>Teste</p> </Link>
                 <Link> <p>Teste</p> </Link>
                 <Link> <p>Teste</p> </Link>
                 <Link> <p>Teste</p> </Link>
-            </Links>
+    </Links>*/}
         </NavBar>
         </>
     )

@@ -20,7 +20,7 @@ export default function Router() {
             <Route path="/login" component= {login} signed />
             <Route path="/home" component={home} isPrivate />
             <Route path="/admin" component={admin} admin isPrivate  />
-            <Route path="/carrinho" component={cart} admin isPrivate  />
+            <Route path="/carrinho" component={cart}  />
             <Route path="/:produto" component={produto} />
         </Switch>
         </BrowserRouter>

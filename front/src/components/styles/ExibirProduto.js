@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Show = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100%;
 `;
 export const Row = styled.div`
@@ -26,7 +25,8 @@ export const Col2 = styled.div`
 export const Col = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  width: auto;
+  width: 50%;
   div{
       div{
           button{
@@ -35,25 +35,23 @@ export const Col = styled.div`
           }
       }
 
-    width: 50%;     
     button{
-        width: 30%;
-        flex: 1;
+        width: 300px;
         height: 60px;
         border-radius: 5px;
-        margin: 0px 10px;
+        margin: 0px 20px;
         background-color: orangered;
         border: 0px;
         color: white;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: 20px;
         text-align: center;
-        }   
+    
+    }   
     }
 `;
 export const Buttons = styled.div`
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
     img{
         box-shadow: 0px 0px 1px 0px;
@@ -85,11 +83,14 @@ export const Images = styled.div`
     margin-right: 20px;
     justify-content: space-between  ;
     height: 400px;
-    width: 35%;
     margin-right: 30px;
+    width: 50%;
+    max-width: 400px;
     img{
         width:100%;
         height: 80%;
+        border-radius: 6px;
+
     }
     .active{
         border: 2px solid red;

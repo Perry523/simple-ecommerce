@@ -4,6 +4,7 @@ import './styles/index.css'
 import {Show, Row, Col, Buttons, Images,Col2} from './styles/ExibirProduto'
 import { BsFillPlusCircleFill, BsDashCircleFill } from "react-icons/bs";
 import {connect} from 'react-redux'
+import NavBar from './NavBar'
 class ExibirProduto extends Component {
     state = {
         produto: null,
@@ -14,16 +15,15 @@ class ExibirProduto extends Component {
     render() {
         return (
             <>
+            <NavBar/>
                 {this.state.produto === null ? 'teste' : 
                 <Show>
-                    
                     <Row>
                         <Images>
                             <img src={this.state.src === null ? Axios.defaults.baseURL+this.state.produto.imgs[0] : Axios.defaults.baseURL+this.state.src}/>
                             <Row>
                                 {this.state.produto.imgs.map((img,i) => {
                                     return(
-                                        
                                         <img key={i} onMouseEnter={e=> this.mouseEnter(e,i)} onMouseLeave={this.mouseLeave} src={Axios.defaults.baseURL+ img}/>
                                     )
                                 })}
@@ -35,20 +35,21 @@ class ExibirProduto extends Component {
                             <h2>R$ {this.state.produto.preco}</h2>
 
                             </Col2>
+                            <p>Cor:{this.state.variant}</p>
+                            <Buttons>
+
                             {this.state.produto.variants.map((variante,i) => {
                                 return (
-                                <Buttons key={i}>
-                                    <p>Cor:{this.state.variant}</p>
-                                    <img onClick={(e)=> this.selectVariant(e,i)} alt={i} src={Axios.defaults.baseURL+variante.path}/>
-                                </Buttons>)
-                            } )}
+                                    <img key={i} onClick={(e)=> this.selectVariant(e,i)} alt={i} src={Axios.defaults.baseURL+variante.path}/>
+                                    )
+                                } )}
+                                </Buttons>
                                 <p>Quantidade:</p>
                             <Row>
                                 <Row style={{'width':'30%','paddingLeft':'10px','alignItems':'center'}}>
-                                    <BsDashCircleFill onClick={this.subtrair} style={{'cursor':'pointer'}}/>
+                                    <BsDashCircleFill onClick={this.subtrair} style={{'min-width':'15px','cursor':'pointer'}}/>
                                     <p style={{'margin':'0px 10px   '}}>{this.state.quant}</p>
-                                    <BsFillPlusCircleFill onClick={this.somar} style={{'cursor':'pointer'}}/>
-
+                                    <BsFillPlusCircleFill onClick={this.somar} style={{'min-width':'15px','cursor':'pointer'}}/>
                                 </Row>
                                 <button onClick={e => this.addProd(this.state.produto)}>Adicionar ao carrinho</button>
                             </Row>
@@ -81,10 +82,10 @@ class ExibirProduto extends Component {
             quant: num
         })
     }
-    selectVariant = e =>{
+    selectVariant = (e,i) =>{
         this.setState({
-            variant: this.state.produto.variants[0].variant,
-            src: this.state.produto.variants[0].path
+            variant: this.state.produto.variants[i].variant,
+            src: this.state.produto.variants[i].path
         })
     }
     mouseEnter = (e,i) =>{

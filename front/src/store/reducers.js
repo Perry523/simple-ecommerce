@@ -28,6 +28,16 @@ export default function cart(state = [], action){
             }
             if(exists) return state
             return [...state, action.prod];
+        case 'SOMAR':
+            state[action.i].quant++
+            return [...state]
+        case 'SUBTRAIR':
+            if(state[action.i].quant < 2)return(state)
+            else state[action.i].quant--
+            return [...state]
+        case 'RMV':
+            state.splice(action.i,1)
+            return [...state]
         default:
             return state
     }

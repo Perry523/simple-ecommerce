@@ -7,8 +7,8 @@ class CriarProdutosSchema extends Schema {
   up () {
     this.create('products', (table) => {
       table.string('name', 80).notNullable().unique()
-      table.string('brand').notNullable()
-      table.string('type').notNullable()
+      table.string('brand').notNullable().references('brand').inTable('brands')
+      table.string('category').notNullable().references('category').inTable('categories')
       table.integer('discount').notNullable()
       table.integer('price').notNullable()
       table.string('info').notNullable()

@@ -9,6 +9,7 @@ export const Box = styled.div`
     flex-grow:1;
     display: flex;
     flex-direction: column;
+
     textarea{
         border-top: 1px solid gray;
         padding-top: 30px;
@@ -19,6 +20,44 @@ export const Box = styled.div`
         align-self: center;
     }
 `
+export const ModalRow = styled.div`
+display: flex;
+align-items: center;
+margin-top: 15px;
+width: 90%;
+input{
+            border: 0px;
+            box-shadow: 0px 0px 3px 0px;
+            flex:1;
+            border-radius: 7px;
+            max-width: 500px;
+            margin: 10px 1px;
+            height: 33px;
+            width: 100%;
+            padding: 7px ;
+    }
+button{
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        border: 0px;
+        background:  #0040ff;
+        color: white;
+    }
+`
+export const Modal = styled.div`
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  
+`
 export const Row = styled.div`
     display: flex;
     justify-content: space-around;
@@ -27,6 +66,53 @@ export const Row = styled.div`
         flex-direction: column
     }
 
+`
+export const ModalContent = styled.div`
+    display: flex;
+    position:relative;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 10px;
+    span{
+        z-index: 1;
+        top: 7px;
+        right: 7px;
+        position: absolute;
+    }
+    span:hover{
+        cursor: pointer;
+    }
+    h3{
+        text-align: center;  
+    }
+`
+export const Row3 = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button{
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        border: 0px;
+        background:  #0040ff;
+        color: white;
+        margin-left: -12px;
+    }
+`
+export const Imgs = styled.div`
+display: flex;
+flex-direction: column;
+width: 30%;
+padding: 0px 20px;
+img{
+    height: 80%;
+}
 `
 export const Row2 = styled.div`
 display: flex;
@@ -53,7 +139,7 @@ justify-content: center;
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
     input{
             margin: 10px, 10px;
             flex: 1;

@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
 export const NavBar = styled.div`
-    height: 180px;
+    height: 120px;
     background-color:white;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0px 0px 1px 0px;
     
 
     img{
         padding: 5px;
+        margin-left: 10%;
         flex: 1;
         height: 100%;
         max-width: 150px;
@@ -57,9 +61,8 @@ export const Col = styled.div`
 `
 export const Row2 = styled.div`
     display: flex;
-    height: 130px;
+    height: 100%;
     width: 100%;
-    border-bottom: solid #eee 1px;
     justify-content: space-between;
     
 `

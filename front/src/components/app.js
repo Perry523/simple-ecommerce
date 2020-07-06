@@ -11,6 +11,8 @@ export default function App() {
     return (
         <Provider store={store}>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet"/>
+        
         <PersistGate loading="null" persistor={persistor}>
         <Routes/>
         <Style/>

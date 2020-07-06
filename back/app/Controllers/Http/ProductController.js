@@ -10,6 +10,7 @@ const Helpers = use('Helpers')
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+
 /**
  * Resourceful controller for interacting with products
  */
@@ -84,7 +85,7 @@ class ProductController {
     //const produto = Product.create(product)
     const prod = new Product()
     prod.name = product.name
-    prod.type = product.type
+    prod.category = product.type
     prod.brand = product.brand
     prod.discount = product.discount
     prod.price = product.price
@@ -101,7 +102,7 @@ class ProductController {
       if (variantImgs !== null){
         if(variantImgs.files[i] !== undefined){
           const variantImgName = `${new Date().getTime()}.${variantImgs.files[i].subtype}`
-          variante.path = '/uploads/variantImgs/'+variantImgName
+          variante.path = '/variantImgs/'+variantImgName
           await variantImgs.files[i].move(Helpers.tmpPath('uploads/variantImgs'), {
             name: variantImgName,
           })
@@ -132,7 +133,7 @@ class ProductController {
             }
             const img = new Image()
             img.product_name = product.name
-            img.path = '/uploads/ProductImgs/'+productImgName
+            img.path = '/images/'+productImgName
             img.save()
           }
         }
@@ -153,16 +154,17 @@ class ProductController {
    */
   async show ({ params, request, response, view }) {
     let produto = {}
-    let product = await Product.query().where('name','=',params.id).fetch()
+    const id = params.id.replace(/_/g,' ')
+    let product = await Product.query().where('name','=',id).fetch()
     produto.nome = product.rows[0].name
     produto.marca = product.rows[0].brand
     produto.preco = product.rows[0].price
     produto.info = product.rows[0].info
     produto.desconto = product.rows[0].discount
-    produto.tipo = product.rows[0].type
-    let imgs = await Image.query().where('product_name','=',params.id).fetch()
+    produto.tipo = product.rows[0].category
+    let imgs = await Image.query().where('product_name','=',id).fetch()
     produto.imgs = imgs.rows.map(img => {return img.path})
-    produto.variants = await Variant.query().where('product_name','=',params.id).fetch()
+    produto.variants = await Variant.query().where('product_name','=',id).fetch()
     return produto
   }
 
@@ -199,6 +201,31 @@ class ProductController {
    * @param {Response} ctx.response
    */
   async destroy ({ params, request, response }) {
+  }
+  async filter({params, request, response}){
+    const products = await Product.query().where('category','=',request.only('category').category).fetch()
+    const produtos = []
+    for(let i in products.rows){
+      let produto = {}
+      produto.nome = products.rows[i].name 
+      let imgs = await Image.query().where('product_name','=',produto.nome).fetch()
+      let variants = await Variant.query().where('product_name','=',produto.nome).fetch()
+      produto.marca = products.rows[i].brand
+      produto.preco = products.rows[i].price
+      produto.info = products.rows[i].info
+      produto.desconto = products.rows[i].discount
+      produto.tipo = products.rows[i].type
+      produto.imgs = []
+      produto.variants = []
+      for(let j in imgs.rows){
+        produto.imgs.push(imgs.rows[j].path)
+      }
+      for(let j in variants.rows){
+        produto.variants.push(variants.rows[j])
+      }
+      produtos.push(produto)
+    }
+    return produtos
   }
 }
 
