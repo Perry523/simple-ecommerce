@@ -1,2 +1,2 @@
 # simple-ecommerce
-an ecommerce template made with react 
+the front-end part of an ecommerce made with react
